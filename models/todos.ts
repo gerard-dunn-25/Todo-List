@@ -10,3 +10,7 @@ export interface TaskData {
 export interface Task extends TaskData {
   id: number
 }
+
+export interface newTodoId {
+  id: number
+}
