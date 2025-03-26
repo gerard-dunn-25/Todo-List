@@ -1,14 +1,39 @@
+import { useState } from 'react'
+import { useAddTodo } from '../hooks/useTodos'
+import { TaskData } from '../../models/todos'
+
 // eslint-disable-next-line no-unused-vars
-function AddTodo() {
+export default function AddTodo() {
+  const [task, setTask] = useState('')
+  const addTodo = useAddTodo()
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (task.trim()) {
+      const data: TaskData = {
+        task: task,
+        due: '',
+        priority: +'',
+        description: '',
+        status: '',
+        isComplete: false,
+      }
+      await addTodo.mutateAsync(data)
+      setTask('')
+    }
+  }
+
   return (
     <>
-      <input
-        className="new-todo"
-        placeholder="What needs to be done?"
-        autoFocus={true}
-      />
+      <form onSubmit={handleSubmit}>
+        <input
+          className="new-todo"
+          placeholder="What needs to be done?"
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
+          aria-label="Add a new task"
+        />
+      </form>
     </>
   )
 }
-
-export default AddTodo

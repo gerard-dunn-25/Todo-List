@@ -1,7 +1,9 @@
-import { useGetTodos } from '../hooks/useTodos'
+import { useGetTodos, useDeleteTodo } from '../hooks/useTodos'
+import '../styles/todoList.scss'
 
 export default function List() {
   const { data: todos, isLoading, isError } = useGetTodos()
+  const deleteTodo = useDeleteTodo()
 
   if (isError) {
     return <p>Something went wrong...</p>
@@ -12,8 +14,28 @@ export default function List() {
   }
 
   return (
-    <div>
-      <ul>{todos?.map((todo) => <li key={todo.id}>{todo.task}</li>)}</ul>
+    <div className="container">
+      <ul className="todo-list">
+        {todos?.map((todo) => (
+          <li key={todo.id} className="list-task">
+            <div className="task-details">
+              {/* <input type="checkbox" className="toggle" /> */}
+              <span>{todo.task}</span>
+              <span>{todo.due}</span>
+            </div>
+            <button
+              className="delete-btn"
+              onClick={(e) => {
+                e.stopPropagation()
+                deleteTodo.mutate(todo.id)
+              }}
+              aria-label="Delete task"
+            >
+              ✘
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

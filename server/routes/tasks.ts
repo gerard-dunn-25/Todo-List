@@ -3,7 +3,6 @@ import express from 'express'
 import * as db from '../db/db'
 
 const router = express.Router()
-export default router
 
 //  GET api/v1/todos/
 
@@ -28,3 +27,21 @@ router.post('/', async (req, res) => {
     res.sendStatus(500)
   }
 })
+
+//  delete api/v1/todos/:id
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const id = Number(req.params.id)
+    const deleteTask = await db.deleteTodo(id)
+    if (deleteTask === 0) {
+      res.status(404).json({ error: 'Task not found' })
+    }
+    res.sendStatus(204)
+  } catch (error) {
+    console.error(error)
+    res.sendStatus(500)
+  }
+})
+
+export default router

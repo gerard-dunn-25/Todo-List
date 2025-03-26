@@ -1,0 +1,51 @@
+.container {
+  max-width: 600px;
+  background-color: #ffdfdf;
+ }
+
+.todo-list {
+  list-style:none;
+  margin:auto;
+  
+}
+
+.list-task {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-evenly;  
+  padding: 15px;
+  
+  &:hover {
+    background: #ffe8e8;
+}
+}
+
+.task-details {  
+  display: grid;
+  grid-template-columns: repeat(auto-fill)
+}
+
+
+
+.todo-list li .destroy {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  margin: auto 0 11px;
+  font-size: 30px;
+  color: #cc9a9a;
+  transition: color .2s ease-out;
+}
+
+.todo-list li:hover .delete-btn {
+  display:block
+}
+
+.todo-list li:hover .delete-btn {
+  color:red
+
+}
