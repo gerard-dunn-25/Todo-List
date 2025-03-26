@@ -21,7 +21,7 @@ export default function List() {
             <div className="task-details">
               {/* <input type="checkbox" className="toggle" /> */}
               <span>{todo.task}</span>
-              <span>{todo.due}</span>
+              <span style={{ fontSize: 15 }}>{todo.due}</span>
             </div>
             <button
               className="delete-btn"

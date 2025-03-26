@@ -31,7 +31,7 @@ export default function AddTodo() {
           placeholder="What needs to be done?"
           value={task}
           onChange={(e) => setTask(e.target.value)}
-          aria-label="Add a new task"
+          aria-label="Enter a new Todo task"
         />
       </form>
     </>

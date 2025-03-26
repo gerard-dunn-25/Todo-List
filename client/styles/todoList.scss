@@ -1,6 +1,6 @@
 .container {
   max-width: 600px;
-  background-color: #ffdfdf;
+  background-color: #e0e0e0;
  }
 
 .todo-list {
@@ -12,7 +12,7 @@
 .list-task {
   display:flex;
   flex-direction: column;
-  justify-content: space-evenly;  
+  justify-content: space-between;  
   padding: 15px;
   
   &:hover {
@@ -27,25 +27,26 @@
 
 
 
-.todo-list li .destroy {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 10px;
-  bottom: 0;
-  width: 40px;
-  height: 40px;
-  margin: auto 0 11px;
-  font-size: 30px;
-  color: #cc9a9a;
-  transition: color .2s ease-out;
-}
+// .todo-list li .destroy {
+//   display: none;
+//   position: absolute;
+//   top: 0;
+//   right: 10px;
+//   bottom: 0;
+//   width: 40px;
+//   height: 40px;
+//   margin: auto 0 11px;
+//   font-size: 30px;
+//   color: #cc9a9a;
+//   transition: color .2s ease-out;
+// }
 
 .todo-list li:hover .delete-btn {
   display:block
 }
 
 .todo-list li:hover .delete-btn {
-  color:red
+  color:red;
+  cursor: pointer;
 
 }
