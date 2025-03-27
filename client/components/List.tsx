@@ -20,18 +20,27 @@ export default function List() {
           <li key={todo.id} className="list-task">
             <div className="task-details">
               {/* <input type="checkbox" className="toggle" /> */}
-              <span>{todo.task}</span>
-              <button
-                className="delete-btn"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  deleteTodo.mutate(todo.id)
-                }}
-                aria-label="Delete task"
-              >
-                ✘
-              </button>
-              <span style={{ fontSize: 15 }}>Due: {todo.due}</span>
+              <div className="todoTask">
+                <div className="todo-task-desc">
+                  <span>{todo.task}</span>
+                </div>
+                <div className="todo-due-date">
+                  <span style={{ fontSize: 15 }}>Due: {todo.due}</span>
+                </div>
+              </div>
+
+              <div className="todo-delete-btn">
+                <button
+                  className="delete-btn"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    deleteTodo.mutate(todo.id)
+                  }}
+                  aria-label="Delete task"
+                >
+                  ✘
+                </button>
+              </div>
             </div>
           </li>
         ))}
