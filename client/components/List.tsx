@@ -21,18 +21,18 @@ export default function List() {
             <div className="task-details">
               {/* <input type="checkbox" className="toggle" /> */}
               <span>{todo.task}</span>
-              <span style={{ fontSize: 15 }}>{todo.due}</span>
+              <button
+                className="delete-btn"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  deleteTodo.mutate(todo.id)
+                }}
+                aria-label="Delete task"
+              >
+                ✘
+              </button>
+              <span style={{ fontSize: 15 }}>Due: {todo.due}</span>
             </div>
-            <button
-              className="delete-btn"
-              onClick={(e) => {
-                e.stopPropagation()
-                deleteTodo.mutate(todo.id)
-              }}
-              aria-label="Delete task"
-            >
-              ✘
-            </button>
           </li>
         ))}
       </ul>
