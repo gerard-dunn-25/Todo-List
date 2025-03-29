@@ -12,10 +12,6 @@ export default function AddTodo() {
     if (task.trim()) {
       const data: TaskData = {
         task: task,
-        due: '',
-        priority: +'',
-        description: '',
-        status: '',
         isComplete: false,
       }
       await addTodo.mutateAsync(data)
@@ -29,6 +25,7 @@ export default function AddTodo() {
         <input
           className="new-todo"
           placeholder="What needs to be done?"
+          type="text"
           value={task}
           onChange={(e) => setTask(e.target.value)}
           aria-label="Enter a new Todo task"
