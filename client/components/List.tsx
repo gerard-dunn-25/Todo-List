@@ -19,6 +19,7 @@ export default function List() {
         {todos?.map((todo) => (
           <li key={todo.id} className="list-task">
             <div className="task-details">
+              {/* <input type="checkbox" className="toggle" /> */}
               <div className="todoTask">
                 <div className="todo-task-desc">
                   <span>{todo.task}</span>
