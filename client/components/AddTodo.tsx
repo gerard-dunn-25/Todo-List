@@ -7,15 +7,15 @@ export default function AddTodo() {
   const [task, setTask] = useState('')
   const addTodo = useAddTodo()
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTask(event.target.value)
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (task.trim()) {
       const data: TaskData = {
         task: task,
-        due: '',
-        priority: +'',
-        description: '',
-        status: '',
         isComplete: false,
       }
       await addTodo.mutateAsync(data)
@@ -30,7 +30,8 @@ export default function AddTodo() {
           className="new-todo"
           placeholder="What needs to be done?"
           value={task}
-          onChange={(e) => setTask(e.target.value)}
+          onChange={handleChange}
+          // onChange={(e) => setTask(e.target.value)}
           aria-label="Enter a new Todo task"
         />
       </form>

@@ -6,17 +6,11 @@ import connection from './connection'
 // getAllTodos
 
 export async function getAllTodos(): Promise<Task[]> {
-  return await connection('todos')
-    .select(
-      'id',
-      'task',
-      'due',
-      'priority',
-      'description',
-      'status',
-      'is_complete as isComplete',
-    )
-    .orderBy('priority', 'asc')
+  return await connection('todos').select(
+    'id',
+    'task',
+    'is_complete as isComplete',
+  )
 }
 
 // addNewTodo
@@ -25,10 +19,6 @@ export async function addNewTodo(newTask: TaskData): Promise<number> {
   const addResult = await connection('todos')
     .insert({
       task: newTask.task,
-      due: newTask.due,
-      priority: newTask.priority,
-      description: newTask.description,
-      status: newTask.status,
       is_complete: newTask.isComplete,
     })
     .returning('id')

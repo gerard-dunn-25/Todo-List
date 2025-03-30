@@ -28,12 +28,7 @@ export default function List() {
                 }}
               />
               <div className="todoTask">
-                <div className="todo-task-desc">
-                  <span>{todo.task}</span>
-                </div>
-                {/* <div className="todo-due-date">
-                  <span style={{ fontSize: 15 }}>Due: {todo.due}</span>
-                </div> */}
+                <span>{todo.task}</span>
               </div>
 
               <div className="todo-delete-btn">
