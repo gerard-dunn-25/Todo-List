@@ -22,6 +22,7 @@ export default function List() {
             <div className="task-details">
               <input
                 className=""
+                aria-label="Completed checkbox"
                 type="checkbox"
                 onChange={() => {
                   todo.isComplete = !todo.isComplete
