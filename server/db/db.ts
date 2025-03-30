@@ -39,9 +39,6 @@ export async function deleteTodo(id: number): Promise<number> {
 //       'id',
 //       'task',
 //       'due',
-//       'priority',
-//       'description',
-//       'status',
 //       'is_complete as isComplete',
 //     )
 //     .first()
@@ -56,9 +53,6 @@ export async function deleteTodo(id: number): Promise<number> {
 //   return await connection('todos').where({ id }).update({
 //     task: editedTask.task,
 //     due: editedTask.due,
-//     priority: editedTask.priority,
-//     description: editedTask.description,
-//     status: editedTask.status,
 //     is_complete: editedTask.isComplete,
 //   })
 // }
