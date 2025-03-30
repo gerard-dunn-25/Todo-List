@@ -1,5 +1,6 @@
 import { useGetTodos, useDeleteTodo } from '../hooks/useTodos'
 import '../styles/todoList.scss'
+import '../styles/index.scss'
 
 export default function List() {
   const { data: todos, isLoading, isError } = useGetTodos()
@@ -19,14 +20,20 @@ export default function List() {
         {todos?.map((todo) => (
           <li key={todo.id} className="list-task">
             <div className="task-details">
-              {/* <input type="checkbox" className="toggle" /> */}
+              <input
+                className=""
+                type="checkbox"
+                onChange={() => {
+                  todo.isComplete = !todo.isComplete
+                }}
+              />
               <div className="todoTask">
                 <div className="todo-task-desc">
                   <span>{todo.task}</span>
                 </div>
-                <div className="todo-due-date">
+                {/* <div className="todo-due-date">
                   <span style={{ fontSize: 15 }}>Due: {todo.due}</span>
-                </div>
+                </div> */}
               </div>
 
               <div className="todo-delete-btn">
