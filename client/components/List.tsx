@@ -24,6 +24,9 @@ export default function List() {
                 <div className="todo-task-desc">
                   <span>{todo.task}</span>
                 </div>
+                <div className="todo-due-date">
+                  <span style={{ fontSize: 15 }}>Due: {todo.due}</span>
+                </div>
               </div>
 
               <div className="todo-delete-btn">
