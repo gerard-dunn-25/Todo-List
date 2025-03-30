@@ -8,7 +8,9 @@ const router = express.Router()
 
 router.get('/', async (req, res) => {
   try {
+    console.log('tasks get route')
     const tasks = await db.getAllTodos()
+    console.log('get route', tasks)
     res.json(tasks)
   } catch (e) {
     res.sendStatus(500)
@@ -21,7 +23,7 @@ router.post('/', async (req, res) => {
   try {
     const newTask = req.body
     const addedTask = await db.addNewTodo(newTask)
-    res.json(addedTask).sendStatus(201)
+    res.status(201).json(addedTask)
   } catch (error) {
     console.error(error)
     res.sendStatus(500)

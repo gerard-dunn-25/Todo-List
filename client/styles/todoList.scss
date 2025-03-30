@@ -27,10 +27,6 @@
   justify-content: space-between;  
 }
 
-.delete-btn {
-  width: 5%;
-  align-items:end;
-}
 
 .todo-list li .destroy {
   width: 100%;
@@ -47,12 +43,22 @@
   transition: color .2s ease-out;
 }
 
-.todo-list li:hover .delete-btn {
+.todo-list li:hover {
   display:block
 }
 
-.todo-list li:hover .delete-btn {
+.todo-list li:hover {
   color:red;
   cursor: pointer;
+  
+}
 
+.delete-btn {
+  width: 5%;
+  align-items:end;
+  color: black
+}
+
+.delete-btn:hover {
+  color: red
 }

@@ -18,7 +18,7 @@ export default function AddTodo() {
         task: task,
         isComplete: false,
       }
-      await addTodo.mutateAsync(data)
+      await addTodo.mutate(data)
       setTask('')
     }
   }

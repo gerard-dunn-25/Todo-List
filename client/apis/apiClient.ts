@@ -15,6 +15,7 @@ export async function addNewTodo(
   newTask: TaskData,
 ): Promise<newTodoId | undefined> {
   try {
+    console.log(newTask)
     const res = await request.post('/api/v1/todos/').send(newTask)
     return res.body
   } catch (error) {
