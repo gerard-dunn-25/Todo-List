@@ -1,10 +1,25 @@
-import { useGetTodos, useDeleteTodo } from '../hooks/useTodos'
+import {
+  useGetTodos,
+  useDeleteTodo,
+  useUpdateComplete,
+} from '../hooks/useTodos'
 import '../styles/todoList.scss'
 import '../styles/index.scss'
+// import { useState } from 'react'
+import { Task } from '../../models/todos'
 
 export default function List() {
   const { data: todos, isLoading, isError } = useGetTodos()
+  // const [task, setTask] = useState('')
   const deleteTodo = useDeleteTodo()
+  const checkComplete = useUpdateComplete()
+
+  const handleComplete = (todo: Task) => {
+    checkComplete.mutate({
+      id: todo.id,
+      updateComplete: { task: todo.task, isComplete: !todo.isComplete },
+    })
+  }
 
   if (isError) {
     return <p>Something went wrong...</p>
@@ -25,8 +40,12 @@ export default function List() {
                 aria-label="Completed checkbox"
                 type="checkbox"
                 onChange={() => {
-                  todo.isComplete = !todo.isComplete
+                  handleComplete(todo)
                 }}
+                checked={todo.isComplete}
+                // onChange={() => {
+                //   todo.isComplete = !todo.isComplete
+                // }}
               />
               <div className="todoTask">
                 <span>{todo.task}</span>

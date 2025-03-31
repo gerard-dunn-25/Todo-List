@@ -49,14 +49,15 @@
 
 .todo-list li:hover {
   color:red;
-  cursor: pointer;
+  
   
 }
 
 .delete-btn {
   width: 5%;
   align-items:end;
-  color: black
+  color: black;
+  cursor: pointer;
 }
 
 .delete-btn:hover {

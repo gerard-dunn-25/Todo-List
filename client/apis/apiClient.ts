@@ -40,4 +40,29 @@ export async function deleteTodoById(id: number) {
 
 // select todo by id
 
+export async function getTodoById(id: number): Promise<Task | undefined> {
+  try {
+    const res = await request.get(`/api/v1/todos/${id}`)
+    return res.body
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message)
+    }
+  }
+}
+
 // update todo
+
+export async function updateComplete(
+  id: number,
+  updatedComplete: TaskData,
+): Promise<Task | undefined> {
+  try {
+    const res = await request.put(`/api/v1/todos/${id}`).send(updatedComplete)
+    return res.body
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message)
+    }
+  }
+}
