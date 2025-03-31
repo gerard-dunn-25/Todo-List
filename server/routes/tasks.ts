@@ -2,6 +2,7 @@ import express from 'express'
 
 import * as db from '../db/db'
 import { getAllTodos } from '../db/db'
+import { updateComplete } from '../../client/apis/apiClient'
 
 const router = express.Router()
 
@@ -56,6 +57,7 @@ router.patch('/:id', async (req, res) => {
     const isComplete = req.body.isComplete
     const todos = await getAllTodos()
     const todo = todos.find((todo) => todo.id === id)
+    const response = await updateComplete(todo?.id, todo?.task, isComplete)
     res.status(201).json(response)
   } catch (error) {
     console.error(error)

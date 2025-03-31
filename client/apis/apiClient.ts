@@ -58,7 +58,7 @@ export async function updateComplete(
   updatedComplete: TaskData,
 ): Promise<Task | undefined> {
   try {
-    const res = await request.put(`/api/v1/todos/${id}`).send(updatedComplete)
+    const res = await request.patch(`/api/v1/todos/${id}`).send(updatedComplete)
     return res.body
   } catch (error) {
     if (error instanceof Error) {
