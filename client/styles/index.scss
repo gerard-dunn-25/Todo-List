@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
 html,
 body {
   margin: 0;
@@ -21,17 +23,21 @@ button {
 }
 
 body {
-  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
-  line-height: 1.4em;
-  background: #f5f5f5;
-  color: #111111;
-  min-width: 230px;
-  max-width: 550px;
-  margin: 0 auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: 300;
+  font-family: 'Patrick Hand', cursive; // You can also use 'Gloria Hallelujah' or 'Shadows Into Light'
+  background: repeating-linear-gradient(
+    to bottom,
+    #fefefe,
+    #fefefe 34px,
+    #cce5ff 35px
+  );
 }
+
+.list-task {
+  background-color: transparent;
+  border-bottom: 1px solid #cce5ff;
+  padding: 12px 8px;
+}
+
 
 :focus {
   outline: 1;
@@ -68,20 +74,19 @@ body {
 
 .todoapp h1 {
   position: absolute;
-  top: -140px;
+  top: -180px;
   width: 100%;
   font-size: 80px;
   font-weight: 200;
   text-align: center;
   color: #b83f45;
-  -webkit-text-rendering: optimizeLegibility;
-  -moz-text-rendering: optimizeLegibility;
-  text-rendering: optimizeLegibility;
+  margin-bottom: 2rem; 
 }
 
 .new-todo,
 .edit {
   position: relative;
+  text-align: center;
   margin: 0;
   width: 100%;
   font-size: 24px;
@@ -176,9 +181,7 @@ body {
 
 .todo-list li .toggle {
   text-align: center;
-  width: 40px;
   /* auto, since non-WebKit browsers doesn't support input styling */
-  height: auto;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -186,21 +189,24 @@ body {
   border: none; /* Mobile Safari */
   -webkit-appearance: none;
   appearance: none;
-}
-
-.todo-list li .toggle {
-  opacity: 0;
+  width: 40px;
+  height: 40px;
+  margin: auto 0;
 }
 
 .todo-list li .toggle + label {
-  /*
-    Firefox requires `#` to be escaped - https://bugzilla.mozilla.org/show_bug.cgi?id=922433
-    IE and Edge requires *everything* to be escaped to render, so we do that instead of just the `#` - https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/7157459/
-  */
-  background-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;utf8,..."); /* keep this as is */
   background-repeat: no-repeat;
   background-position: center left;
+  background-size: contain; /* Add this */
+  transform: scale(1.4); /* NEW: Increase size */
+  transform-origin: left center; /* Ensure it grows from the left side */
+  display: inline-block; /* Required for transform to apply properly */
+  padding-left: 60px; /* Adjust padding to make room for larger circle */
+  height: 40px; /* Ensure height is sufficient */
+  line-height: 40px;
 }
+
 
 .todo-list li .toggle:checked + label {
   background-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E");
@@ -208,7 +214,7 @@ body {
 
 .todo-list li label {
   word-break: break-all;
-  padding: 15px 15px 15px 60px;
+  padding: 15px 15px 15px 70px; 
   display: block;
   line-height: 1.2;
   transition: color 0.4s;
@@ -355,6 +361,44 @@ html .clear-completed:active {
   line-height: 0.1em;
 }
 
+.task-details {
+  display: flex;
+  align-items: center;     // Vertically align checkbox, text, and delete
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.task-details input[type='checkbox'] {
+  appearance: none;
+  border: 2px solid #555;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  margin-right: 12px;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.task-details input[type='checkbox']:checked::after {
+  content: '✓';
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
+  position: absolute;
+  top: 2px;
+  left: 6px; // ← Adjusted from 7px to 6px
+  line-height: 1;
+}
+
+.task-details input[type='checkbox']:checked {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
+
+
 /*
   Hack to remove background from Mobile Safari.
   Can't use it globally since it destroys checkboxes in Firefox
@@ -377,5 +421,11 @@ html .clear-completed:active {
 
   .filters {
     bottom: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 1rem;
   }
 }

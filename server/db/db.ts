@@ -43,7 +43,7 @@ export async function getTodoById(id: number): Promise<Task> {
 
 // edit todo
 
-export async function editTodo(
+export async function updateComplete(
   id: number,
   editedTask: Partial<TaskData>,
 ): Promise<number> {

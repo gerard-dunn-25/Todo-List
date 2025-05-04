@@ -33,19 +33,17 @@ export default function List() {
     <div className="container">
       <ul className="todo-list">
         {todos?.map((todo) => (
-          <li key={todo.id} className="list-task">
+          <li
+            key={todo.id}
+            className={`list-task ${todo.isComplete ? 'completed' : 'incomplete'}`}
+          >
             <div className="task-details">
               <input
-                className=""
-                aria-label="Completed checkbox"
                 type="checkbox"
-                onChange={() => {
-                  handleComplete(todo)
-                }}
+                onChange={() => handleComplete(todo)}
                 checked={todo.isComplete}
-                // onChange={() => {
-                //   todo.isComplete = !todo.isComplete
-                // }}
+                className="custom-checkbox"
+                aria-label="Completed checkbox"
               />
               <div className="todoTask">
                 <span>{todo.task}</span>

@@ -32,6 +32,7 @@ export function useDeleteTodo() {
 
 export function useUpdateComplete() {
   const queryClient = useQueryClient()
+
   return useMutation({
     mutationFn: async ({
       id,
@@ -40,8 +41,7 @@ export function useUpdateComplete() {
       id: number
       updateComplete: TaskData
     }) => {
-      const res = await api.updateComplete(id, updateComplete)
-      return res
+      return await api.updateComplete(id, updateComplete)
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['todos'] })

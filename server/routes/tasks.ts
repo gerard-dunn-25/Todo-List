@@ -1,8 +1,6 @@
 import express from 'express'
 
 import * as db from '../db/db'
-import { getAllTodos } from '../db/db'
-import { updateComplete } from '../../client/apis/apiClient'
 
 const router = express.Router()
 
@@ -51,17 +49,15 @@ router.delete('/:id', async (req, res) => {
 //  patch api/v1/todos/:id
 
 router.patch('/:id', async (req, res) => {
+  const id = Number(req.params.id)
+  const { task, isComplete } = req.body
+
   try {
-    const id = +req.params.id
-    const task = req.body.task
-    const isComplete = req.body.isComplete
-    const todos = await getAllTodos()
-    const todo = todos.find((todo) => todo.id === id)
-    const response = await updateComplete(todo?.id, todo?.task, isComplete)
-    res.status(201).json(response)
-  } catch (error) {
-    console.error(error)
-    res.sendStatus(500)
+    const updated = await db.updateComplete(id, { task, isComplete })
+    res.status(200).json(updated)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ message: 'Failed to update todo' })
   }
 })
 
